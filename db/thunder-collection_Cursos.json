@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Cursos",
+    "dateExported": "2024-02-12T18:04:41.507Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "70db4af8-6789-4986-868c-bd9669e8cb33",
+            "colId": "b8545124-be5e-457f-b1d8-f6fb8f3e5045",
+            "containerId": "",
+            "name": "cursosPost",
+            "url": "http://localhost:3000/api/curso",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-12T16:28:05.092Z",
+            "modified": "2024-02-12T18:01:37.163Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"TallerII\",\n  \"descripcion\":\"Curso de informatica\",\n  \"docente\":\"Braulio Echeverria\",\n  \"duracion\":\"3 meses\",\n  \"categoria\":\"Tecnologia\",\n  \"precio\":\"150.00\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
