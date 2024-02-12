@@ -1,0 +1,25 @@
+{
+  "name": "laboratoriops2",
+  "version": "1.0.0",
+  "description": "laboratorio de practica supervisada ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalvarez-2022277/Laboratorio-PS-2.git"
+  },
+  "author": "Diego Alvarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dalvarez-2022277/Laboratorio-PS-2/issues"
+  },
+  "homepage": "https://github.com/dalvarez-2022277/Laboratorio-PS-2#readme",
+  "dependencies": {
+    "dotenv": "^16.4.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.2"
+  }
+}
