@@ -33,7 +33,7 @@ const CursosSchema = Schema({
 
     estado: {
         type: Boolean,
-        default: false
+        default: true
     }
 
 });

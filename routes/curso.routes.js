@@ -1,9 +1,19 @@
 const { Router } = require ('express');
 const {check} = require ('express-validator');
-
+const {existeCursoById} = require ('../helpers/db-validators');
 const {validarCampos} = require ('../middlewares/validar-campos');
-const {cursosPost} = require('../controllers/curso.controller');
+const {cursosPost,cursosGet,getcursoById, cursosPut,contactosDelete} = require('../controllers/curso.controller');
 const router = Router ();
+
+router.get("/", cursosGet);
+
+router.get(
+    "/:id",
+    [
+        check("id","El id no es un formato valido de MongoDB").isMongoId(),
+        check("id").custom(existeCursoById),
+        validarCampos
+    ],getcursoById);
 
 router.post(
     "/",
@@ -16,5 +26,21 @@ router.post(
         check("precio","El precio es obligatorio").not().isEmpty(),
         validarCampos,
     ],cursosPost);
+
+router.put(
+    "/:id",
+    [
+        check("id","El id no es un formato valido de MongoDB").isMongoId(),
+        check("id").custom(existeCursoById),
+        validarCampos
+    ],cursosPut);
+
+router.delete(
+    "/:id",
+    [
+        check("id","El id no es un formato valido de mongoDB").isMongoId(),
+        check("id").custom(existeCursoById),
+        validarCampos
+    ],contactosDelete);
 
     module.exports = router;
