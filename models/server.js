@@ -7,10 +7,12 @@ class Server{
         this.app = express ();
         this.port = process.env.PORT;
         this.cursosPatch = '/api/curso';
+        this.almunosPatch = '/api/alumno';
 
         this.conectarDB();
         this.middlewares();
         this.routescursos();
+        this.routesalumnos();
     }
 
     async conectarDB (){
@@ -23,6 +25,10 @@ class Server{
 
     routescursos(){
         this.app.use(this.cursosPatch, require ('../routes/curso.routes'));
+    }
+
+    routesalumnos(){
+        this.app.use(this.almunosPatch, require('../routes/alumno.routes'));
     }
 
     listen(){
