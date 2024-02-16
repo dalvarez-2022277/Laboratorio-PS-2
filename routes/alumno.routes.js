@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { existeAlumnoById } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { alumnosGet, getalumnosById, alumnoPost, alumnoPut } = require('../controllers/alumno.controller');
+const { alumnosGet, getalumnosById, alumnoPost, alumnoPut,alumnoDelete } = require('../controllers/alumno.controller');
 
 const router = Router();
 
@@ -36,4 +36,11 @@ router.put(
         validarCampos
     ], alumnoPut);
 
+    router .delete(
+        '/:id',
+        [
+            check('id', 'El id no es un formato valido de mongoDB').isMongoId(),
+            check('id').custom(existeAlumnoById),
+            validarCampos
+        ], alumnoDelete);
     module.exports = router;

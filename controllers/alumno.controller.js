@@ -44,13 +44,25 @@ const getalumnosById = async (req, res) => {
 const alumnoPost = async (req, res) => {
     try {
         const { nombre, apellido, edad, direccion, email, telefono, cursoId } = req.body;
+        let alumno = await Alumno.findOne({ email }); // Buscar el alumno por su email
+
+        if (!alumno) {
+            // Si el alumno no existe, se crea uno nuevo
+            alumno = new Alumno({ nombre, apellido, edad, direccion, email, telefono });
+        }
+
         const curso = await Curso.findById(cursoId);
+
         if (!curso) {
             return res.status(404).json({ message: 'El curso no existe' });
         }
-        const alumno = new Alumno({ nombre, apellido, edad, direccion, email, telefono });
-        alumno.cursos.push(curso);
 
+        // Verificar si el curso ya está asociado al alumno
+        if (alumno.cursos.includes(cursoId)) {
+            return res.status(400).json({ message: 'El curso ya está asociado al alumno' });
+        }
+
+        alumno.cursos.push(curso);
         await alumno.save();
 
         res.status(200).json({ alumno });
@@ -60,21 +72,37 @@ const alumnoPost = async (req, res) => {
     }
 }
 
+
 const alumnoPut = async (req, res) => {
     const { id } = req.params;
-    const { _id,cursoId, ...resto } = req.body;
+    const { _id, ...resto } = req.body;
     await Alumno.findByIdAndUpdate(id, resto);
-        const alumno = await Alumno.findOne({ _id: id });
-        res.status(200).json({
-            msg: 'El Alumno fue actualizado exitosamente',
-            alumno
-        });
+
+    const alumno = await Alumno.findOne({ _id: id });
+
+    res.status(200).json({
+        msg: 'El alumno fue actualizado exitosamente',
+        alumno
+    });
+
+}
+
+const alumnoDelete = async (req, res) => {
+    const {id} = req.params;
+    await Alumno.findByIdAndUpdate(id, { estado: false });
+    const alumno = await Alumno.findOne({_id:id});
+
+    res.status(200).json({
+        msg:"Alumno Eliminado exitosamente",
+        alumno
+    });
 }
 
 module.exports = {
     alumnosGet,
     getalumnosById,
     alumnoPost,
-    alumnoPut
+    alumnoPut,
+    alumnoDelete
 }
 
