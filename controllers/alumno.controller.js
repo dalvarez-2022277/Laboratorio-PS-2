@@ -1,6 +1,7 @@
-const {response, json} = require('express');
+const { response, json } = require('express');
 const Alumno = require('../models/alumno');
 const Curso = require('../models/curso');
+
 const alumnosGet = async (req, res = response) => {
     const { limite, desde } = req.query;
     const query = { estado: true };
@@ -10,9 +11,9 @@ const alumnosGet = async (req, res = response) => {
             Alumno.countDocuments(query),
             Alumno.find(query)
                 .populate({
-                    path: 'cursos', // Nombre del campo en el modelo Alumno que contiene el ID del curso
-                    model: 'Curso', // Nombre del modelo de cursos (debe coincidir con el nombre que usaste al definir el modelo)
-                    select: 'nombre' // Campos del curso que deseas mostrar
+                    path: 'cursos',
+                    model: 'Curso',
+                    select: '-_id nombre descripcion docente duracion categoria precio' // Excluye el campo _id y selecciona todos los demás campos del curso
                 })
                 .skip(Number(desde))
                 .limit(Number(limite))
@@ -30,9 +31,9 @@ const alumnosGet = async (req, res = response) => {
 
 
 
-const getalumnosById = async (req, res) =>{
-    const {id} = req.params;
-    const alumno = await Alumno.findOne({_id:id});
+const getalumnosById = async (req, res) => {
+    const { id } = req.params;
+    const alumno = await Alumno.findOne({ _id: id });
 
     res.status(200).json({
         alumno
@@ -43,18 +44,13 @@ const getalumnosById = async (req, res) =>{
 const alumnoPost = async (req, res) => {
     try {
         const { nombre, apellido, edad, direccion, email, telefono, cursoId } = req.body;
-
-        // Verificar si el curso existe
         const curso = await Curso.findById(cursoId);
         if (!curso) {
             return res.status(404).json({ message: 'El curso no existe' });
         }
-
-        // Crear un nuevo alumno y asociarlo con el curso
         const alumno = new Alumno({ nombre, apellido, edad, direccion, email, telefono });
-        alumno.cursos.push(curso); // Agregar el curso al array de cursos del alumno
+        alumno.cursos.push(curso);
 
-        // Guardar el alumno en la base de datos
         await alumno.save();
 
         res.status(200).json({ alumno });
@@ -64,9 +60,21 @@ const alumnoPost = async (req, res) => {
     }
 }
 
+const alumnoPut = async (req, res) => {
+    const { id } = req.params;
+    const { _id,cursoId, ...resto } = req.body;
+    await Alumno.findByIdAndUpdate(id, resto);
+        const alumno = await Alumno.findOne({ _id: id });
+        res.status(200).json({
+            msg: 'El Alumno fue actualizado exitosamente',
+            alumno
+        });
+}
+
 module.exports = {
     alumnosGet,
     getalumnosById,
-    alumnoPost
+    alumnoPost,
+    alumnoPut
 }
 
