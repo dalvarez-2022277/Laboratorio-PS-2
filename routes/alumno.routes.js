@@ -24,6 +24,7 @@ router.post('/', [
     check('email', 'El email es obligatorio').isEmail(),
     check('telefono', 'El telefono es obligatorio').not().isEmpty(),
     check('cursoId', 'El id del curso no es un formato valido de MongoDB').isMongoId(),
+    check('cursoId', 'Debe asignarse al menos un curso').not().isEmpty(),
     validarCampos
 ], alumnoPost);
 
