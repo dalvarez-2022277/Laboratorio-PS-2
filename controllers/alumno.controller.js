@@ -75,7 +75,7 @@ const alumnoPost = async (req, res) => {
 
 const alumnoPut = async (req, res) => {
     const { id } = req.params;
-    const { _id, ...resto } = req.body;
+    const { _id,fechaInscripcion, ...resto } = req.body;
     await Alumno.findByIdAndUpdate(id, resto);
 
     const alumno = await Alumno.findOne({ _id: id });

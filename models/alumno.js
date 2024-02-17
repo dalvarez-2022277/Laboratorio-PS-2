@@ -37,6 +37,12 @@ const AlumnoSchema = Schema({
         default: Date.now
     },
 
+    role:{
+        type: String,
+        required: true,
+        default: '“STUDENT_ROLE'
+    },
+
     estado: {
         type: Boolean,
         default: true
