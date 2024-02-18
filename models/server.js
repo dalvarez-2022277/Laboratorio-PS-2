@@ -8,11 +8,13 @@ class Server{
         this.port = process.env.PORT;
         this.cursosPatch = '/api/curso';
         this.almunosPatch = '/api/alumno';
+        this.profesoresPatch = '/api/profesor';
 
         this.conectarDB();
         this.middlewares();
         this.routescursos();
         this.routesalumnos();
+        this.routesprofesores();
     }
 
     async conectarDB (){
@@ -29,6 +31,10 @@ class Server{
 
     routesalumnos(){
         this.app.use(this.almunosPatch, require('../routes/alumno.routes'));
+    }
+
+    routesprofesores(){
+        this.app.use(this.profesoresPatch, require('../routes/profesor.router'));
     }
 
     listen(){
