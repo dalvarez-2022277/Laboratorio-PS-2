@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Cursos",
-    "dateExported": "2024-02-13T00:40:26.947Z",
+    "dateExported": "2024-02-18T04:08:25.473Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-02-12T16:28:05.092Z",
-            "modified": "2024-02-12T23:31:29.632Z",
+            "modified": "2024-02-18T03:10:28.090Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nombre\":\"Matematicas\",\n  \"descripcion\":\"Curso de matematica avanzada\",\n  \"docente\":\"Brayan joj\",\n  \"duracion\":\"8 meses\",\n  \"categoria\":\"Matematica\",\n  \"precio\":\"250.00\"\n}\n",
+                "raw": "{\n  \"nombre\":\"Taller\",\n  \"descripcion\":\"Curso de programacion\",\n  \"docente\":\"Braulio\",\n  \"duracion\":\"2 años\",\n  \"categoria\":\"Informatica\",\n  \"precio\":\"700.00\"\n}\n",
                 "form": []
             },
             "tests": []
@@ -43,11 +43,11 @@
             "colId": "b8545124-be5e-457f-b1d8-f6fb8f3e5045",
             "containerId": "",
             "name": "getcursoById",
-            "url": "http://localhost:3000/api/curso/65caa9d8fc49f6fef4861014",
+            "url": "http://localhost:3000/api/curso/65d175263061045d02dfffcc",
             "method": "GET",
             "sortNum": 40000,
             "created": "2024-02-12T23:50:15.167Z",
-            "modified": "2024-02-12T23:50:51.566Z",
+            "modified": "2024-02-18T03:26:09.956Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -57,16 +57,16 @@
             "colId": "b8545124-be5e-457f-b1d8-f6fb8f3e5045",
             "containerId": "",
             "name": "cursosPut",
-            "url": "http://localhost:3000/api/curso/65caa9d8fc49f6fef4861014",
+            "url": "http://localhost:3000/api/curso/65d175263061045d02dfffcc",
             "method": "PUT",
             "sortNum": 50000,
             "created": "2024-02-13T00:37:21.024Z",
-            "modified": "2024-02-13T00:39:31.177Z",
+            "modified": "2024-02-18T03:26:31.586Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nombre\": \"Taller 2\"\n}",
+                "raw": "{\n  \"nombre\":\"Taller II\",\n  \"descripcion\":\"Curso de programacion\",\n  \"docente\":\"Braulio\",\n  \"duracion\":\"2 años\",\n  \"categoria\":\"Informatica\",\n  \"precio\":\"700.00\"\n}\n",
                 "form": []
             },
             "tests": []
@@ -80,7 +80,7 @@
             "method": "DELETE",
             "sortNum": 60000,
             "created": "2024-02-13T00:38:44.513Z",
-            "modified": "2024-02-13T00:39:00.077Z",
+            "modified": "2024-02-13T00:47:55.475Z",
             "headers": [],
             "params": [],
             "tests": []

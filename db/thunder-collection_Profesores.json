@@ -1,0 +1,89 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Profesores",
+    "dateExported": "2024-02-18T04:08:05.201Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "183dad60-b4f1-4c01-ac1d-e870a10a7eba",
+            "colId": "ddb063e1-a413-4fe4-856f-9edc7ec0c0d2",
+            "containerId": "",
+            "name": "profesoresPost",
+            "url": "http://localhost:3000/api/profesor",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-18T00:28:20.994Z",
+            "modified": "2024-02-18T03:13:25.918Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Marco\",\n  \"apellido\":\"Tulio\",\n  \"edad\":\"32\",\n  \"direccion\":\"12 zona 18 \",\n  \"telefono\":\"12345678\",\n  \"email\":\"marco@gmail.com\",\n  \"cursoId\":\"65d174f23061045d02dfffca\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "80dfc706-99ec-4caf-9107-29ba72e1fb56",
+            "colId": "ddb063e1-a413-4fe4-856f-9edc7ec0c0d2",
+            "containerId": "",
+            "name": "profesoresGet",
+            "url": "http://localhost:3000/api/profesor",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-18T00:28:28.010Z",
+            "modified": "2024-02-18T00:30:31.439Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ea9d31fd-99f0-4405-8f21-65877796b4f6",
+            "colId": "ddb063e1-a413-4fe4-856f-9edc7ec0c0d2",
+            "containerId": "",
+            "name": "progesorGetById",
+            "url": "http://localhost:3000/api/profesor/65d14f653061045d02dfff92",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2024-02-18T00:31:38.372Z",
+            "modified": "2024-02-18T00:32:07.465Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1287ab33-9242-48ed-af34-e76e638672c7",
+            "colId": "ddb063e1-a413-4fe4-856f-9edc7ec0c0d2",
+            "containerId": "",
+            "name": "profesoresPut",
+            "url": "http://localhost:3000/api/profesor/65d14f653061045d02dfff92",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-02-18T00:28:37.361Z",
+            "modified": "2024-02-18T00:32:39.085Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Braulio\",\n  \"apellido\":\"Echeberria\",\n  \"edad\":\"14\",\n  \"direccion\":\"1ra calle 3-33 zona 1 boca del monte\",\n  \"telefono\":\"55576196\",\n  \"email\":\"diegoAlvarez@gmail.com\",\n  \"cursoId\":\"65caa9d8fc49f6fef4861014\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f4e986ac-c540-487d-af93-c6ca0613f2b4",
+            "colId": "ddb063e1-a413-4fe4-856f-9edc7ec0c0d2",
+            "containerId": "",
+            "name": "profesoresDelete",
+            "url": "http://localhost:3000/api/profesor/65d14f653061045d02dfff92",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-02-18T00:28:50.042Z",
+            "modified": "2024-02-18T00:33:01.499Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

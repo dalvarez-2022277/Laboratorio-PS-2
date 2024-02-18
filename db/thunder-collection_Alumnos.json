@@ -1,0 +1,89 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Alumnos",
+    "dateExported": "2024-02-18T04:08:18.640Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "97aa2048-614a-40b0-bb82-dde19f9fa30b",
+            "colId": "79c0591d-9ed4-4a6e-8835-7981f79a9236",
+            "containerId": "",
+            "name": "alumnosPost",
+            "url": "http://localhost:3000/api/alumno",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2024-02-16T14:40:31.618Z",
+            "modified": "2024-02-18T03:12:32.178Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Sebastian\",\n  \"apellido\":\"Istacuy\",\n  \"edad\":\"18\",\n  \"direccion\":\"23-12 zona 14\",\n  \"telefono\":\"12980012\",\n  \"email\":\"sistacuy@gmail.com\",\n  \"cursoId\":\"65d174f23061045d02dfffca\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e86203b3-083a-40ec-b992-89dbf50cc6a7",
+            "colId": "79c0591d-9ed4-4a6e-8835-7981f79a9236",
+            "containerId": "",
+            "name": "alumnosGet",
+            "url": "http://localhost:3000/api/alumno",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-16T14:00:37.588Z",
+            "modified": "2024-02-16T15:21:58.148Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "90ddf8ee-4199-4a51-9add-e6ed15ba7dcf",
+            "colId": "79c0591d-9ed4-4a6e-8835-7981f79a9236",
+            "containerId": "",
+            "name": "alumnoGetById",
+            "url": "http://localhost:3000/api/alumno/65cfb2f500fa0d9d8f5a4fcf",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-18T00:31:04.784Z",
+            "modified": "2024-02-18T00:31:24.132Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "69561c21-fe37-4471-986f-11a087ec8ae7",
+            "colId": "79c0591d-9ed4-4a6e-8835-7981f79a9236",
+            "containerId": "",
+            "name": "almnosPut",
+            "url": "http://localhost:3000/api/alumno/65cfb2f500fa0d9d8f5a4fcf",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-02-16T17:16:42.654Z",
+            "modified": "2024-02-16T19:17:31.586Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Saul Sebastian\",\n  \"apellido\":\"Alvarez\",\n  \"edad\":\"14\",\n  \"direccion\":\"1ra calle 3-33 zona 1 boca del monte\",\n  \"telefono\":\"55576196\",\n  \"email\":\"saulcastaneda@gmail.com\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dce10781-cef9-4346-b271-5385ef1f7a7b",
+            "colId": "79c0591d-9ed4-4a6e-8835-7981f79a9236",
+            "containerId": "",
+            "name": "alumnosDelete",
+            "url": "http://localhost:3000/api/alumno/65cfb2f500fa0d9d8f5a4fcf",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-02-16T19:22:35.321Z",
+            "modified": "2024-02-16T19:22:58.344Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
