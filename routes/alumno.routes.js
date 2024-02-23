@@ -1,15 +1,11 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { existeAlumnoById } = require('../helpers/db-validators');
-const { existeAlumno } = require('../helpers/db-validators');
+const { alumnoExist } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
-<<<<<<< HEAD
 const { alumnosGet, getalumnosById, alumnoPost, alumnoPut, alumnoDelete } = require('../controllers/alumno.controller');
-=======
-const { alumnosGet, getalumnosById, alumnoPost, alumnoPut, alumnoDelete, asignarcursoalumno } = require('../controllers/alumno.controller');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { validarAlumno } = require('../middlewares/validar-role');
->>>>>>> feuture/alumnos
+
 
 const router = Router();
 
@@ -19,7 +15,7 @@ router.get(
     '/:id',
     [
         check('id', 'El id no es un formato valido de MongoDB').isMongoId(),
-        check('id').custom(existeAlumnoById),
+        check('id').custom(alumnoExist),
         validarCampos
     ], getalumnosById);
 
@@ -29,7 +25,7 @@ router.post(
         check("nombre", "El nombre es obligatorio").not().isEmpty(),
         check("correo", "El correo es obligatorio").not().isEmpty(),
         check('password').isLength({ min: 6 }),
-        check('correo').custom(existeAlumno),
+        check('correo').custom(alumnoExist),
         validarCampos
     ], alumnoPost);
 
@@ -40,10 +36,9 @@ router.put(
         check('curso').not().isEmpty(),
         validarAlumno,
         validarCampos
-    ], asignarcursoalumno);
+    ], alumnoPut);
 
-<<<<<<< HEAD
-=======
+
 router.put(
     '/:id',
     [
@@ -54,22 +49,15 @@ router.put(
         validarCampos
     ], alumnoPut
 );
->>>>>>> feuture/alumnos
 
 router.delete(
-    '/:id',
+    "/delete",
     [
-<<<<<<< HEAD
-        check('id', 'El id no es un formato valido de mongoDB').isMongoId(),
-        check('id').custom(existeAlumnoById),
-        validarCampos
-    ], alumnoDelete);
-=======
         validarJWT,
         validarAlumno,
         check("password").not().isEmpty(),
         validarCampos
     ], alumnoDelete
 );
->>>>>>> feuture/alumnos
+
 module.exports = router;

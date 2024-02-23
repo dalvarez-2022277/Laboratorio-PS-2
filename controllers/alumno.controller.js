@@ -94,22 +94,26 @@ const asignarcursoalumno = async (req, res) => {
 
 
 const alumnoPut = async (req, res) => {
-    const { id } = req.params;
-<<<<<<< HEAD
-    const { _id,fechaInscripcion, ...resto } = req.body;
-=======
-    const { _id, fechaInscripcion, role, ...resto } = req.body;
->>>>>>> feuture/alumnos
-    await Alumno.findByIdAndUpdate(id, resto);
+    try {
+        const { nombre, password } = req.body;
+        const token = global.tokenAcces;
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await Student.findByIdAndUpdate(uid, { nombre, password: hashedPassword });
 
-    const alumno = await Alumno.findOne({ _id: id });
-
-    res.status(200).json({
-        msg: 'El alumno fue actualizado exitosamente',
-        alumno
-    });
-
+        res.status(200).json({
+            msg: "Actualizado exitosamente"
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: "Hubo un error al actualizar el alumno"
+        });
+    }
 }
+module.exports = {
+    alumnoPut
+};
 
 
 const alumnoDelete = async (req, res) => {
