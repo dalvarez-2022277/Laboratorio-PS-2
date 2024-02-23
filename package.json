@@ -19,10 +19,13 @@
   },
   "homepage": "https://github.com/dalvarez-2022277/Laboratorio-PS-2#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.2",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "path-to-regexp": "^6.2.1"
   }
 }

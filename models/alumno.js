@@ -1,54 +1,37 @@
 const { Schema, model } = require('mongoose');
-const cursos = require('./curso');
 
 const AlumnoSchema = Schema({
     nombre: {
         type: String,
-        required: [true, 'El nombre es obligatorio']
+        required: true
     },
-    
-    apellido: {
+    correo: {
         type: String,
-        required: [true, 'El apellido es obligatorio']
+        required: true
     },
-
-    edad: {
+    password: {
         type: String,
-        required: [true, 'La edad es obligatoria']
+        required: true
     },
-
-    direccion: {
-        type: String,
-        required: [true, 'La dirección es obligatoria']
-    },
-
-    telefono: {
-        type: String,
-        required: [true, 'El teléfono es obligatorio']
-    },
-
-    email: {
-        type: String,
-        required: [true, 'El email es obligatorio']
-    },
-
-    fechaInscripcion: {
-        type: Date,
-        default: Date.now
-    },
-
-    role:{
+    role: {
         type: String,
         required: true,
-        default: '“STUDENT_ROLE'
+        default: 'ALUMNO_ROLE'
     },
-
     estado: {
         type: Boolean,
         default: true
     },
-    cursos: [{ type: Schema.Types.ObjectId, ref: 'cursos' }] 
+    cursos: {
+        type: Array,
+        default: 'NONE'
+    }
 });
 
-module.exports = model('Alumno', AlumnoSchema);
+AlumnoSchema.methods.toJSON = function(){
+    const { __v, password, _id, ...usuario} = this.toObject();
+    usuario.uid = _id;
+    return usuario;
+}
 
+module.exports = model('Alumno', AlumnoSchema);

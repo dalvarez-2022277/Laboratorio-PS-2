@@ -1,6 +1,8 @@
 const { response, json } = require('express');
+const byscrypt = require('bcryptjs');
 const Alumno = require('../models/alumno');
 const Curso = require('../models/curso');
+const jwt = require('jsonwebtoken');
 
 const alumnosGet = async (req, res = response) => {
     const { limite, desde } = req.query;
@@ -41,41 +43,63 @@ const getalumnosById = async (req, res) => {
 }
 
 
+const bcrypt = require('bcryptjs');
+
 const alumnoPost = async (req, res) => {
     try {
-        const { nombre, apellido, edad, direccion, email, telefono, cursoId } = req.body;
-        let alumno = await Alumno.findOne({ email }); // Buscar el alumno por su email
-
-        if (!alumno) {
-            // Si el alumno no existe, se crea uno nuevo
-            alumno = new Alumno({ nombre, apellido, edad, direccion, email, telefono });
-        }
-
-        const curso = await Curso.findById(cursoId);
-
-        if (!curso) {
-            return res.status(404).json({ message: 'El curso no existe' });
-        }
-
-        // Verificar si el curso ya está asociado al alumno
-        if (alumno.cursos.includes(cursoId)) {
-            return res.status(400).json({ message: 'El curso ya está asociado al alumno' });
-        }
-
-        alumno.cursos.push(curso);
+        var { nombre, correo, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const alumno = new Alumno({ nombre, correo, password: hashedPassword });
         await alumno.save();
 
         res.status(200).json({ alumno });
     } catch (error) {
-        console.error('Error al crear el alumno:', error);
-        res.status(500).json({ message: 'Error del servidor' });
+        console.error("Error al guardar alumno:", error);
+        res.status(500).json({ msg: "Error interno del servidor" });
+    }
+}
+
+
+const asignarcursoalumno = async (req, res) => {
+    try {
+        const { curso } = req.body;
+        const token = global.tokenAcces;
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+
+        const alumno = await Alumno.findById(uid);
+        if (!alumno) {
+            return res.status(404).json({ msg: "Estudiante no encontrado" });
+        }
+
+        const cursoExistente = await Curse.findOne({ nombre: curso, estado: true });
+        if (!cursoExistente) {
+            return res.status(400).json({ msg: "El curso no existe" });
+        }
+
+        if (alumno.cursos.includes(curso)) {
+            return res.status(400).json({ msg: "Ya te encuentras asignado a ese curso" });
+        }
+
+        if (alumno.cursos.length >= 3) {
+            return res.status(400).json({ msg: "Ya estás asignado a 3 cursos, no puedes asignarte más" });
+        }
+
+        await Alumno.findByIdAndUpdate(uid, { $push: { cursos: curso } });
+        res.status(200).json({ msg: "Curso asignado exitosamente" });
+    } catch (error) {
+        console.error("Error al asignar curso:", error);
+        res.status(500).json({ msg: "Error interno del servidor" });
     }
 }
 
 
 const alumnoPut = async (req, res) => {
     const { id } = req.params;
+<<<<<<< HEAD
     const { _id,fechaInscripcion, ...resto } = req.body;
+=======
+    const { _id, fechaInscripcion, role, ...resto } = req.body;
+>>>>>>> feuture/alumnos
     await Alumno.findByIdAndUpdate(id, resto);
 
     const alumno = await Alumno.findOne({ _id: id });
@@ -87,13 +111,14 @@ const alumnoPut = async (req, res) => {
 
 }
 
+
 const alumnoDelete = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     await Alumno.findByIdAndUpdate(id, { estado: false });
-    const alumno = await Alumno.findOne({_id:id});
+    const alumno = await Alumno.findOne({ _id: id });
 
     res.status(200).json({
-        msg:"Alumno Eliminado exitosamente",
+        msg: "Alumno Eliminado exitosamente",
         alumno
     });
 }
@@ -103,6 +128,7 @@ module.exports = {
     getalumnosById,
     alumnoPost,
     alumnoPut,
-    alumnoDelete
+    alumnoDelete,
+    asignarcursoalumno
 }
 
